@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice Forex - Stratégie de Hassim</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #34495e;
+        }
+        input[type="number"] {
+            padding: 10px;
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            color: #2c3e50;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #7f8c8d;
+        }
+        footer a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculatrice Forex - Stratégie de Hassim Traider Forex</h2>
+        <p>Entrez les informations ci-dessous pour calculer la taille de lot et le profit potentiel basé sur votre capital et votre stratégie de 100 pips.</p>
+
+        <label for="capital">Capital initial (en USD) :</label>
+        <input type="number" id="capital" placeholder="Exemple : 100" required>
+
+        <label for="riskPercentage">Pourcentage de risque (%) :</label>
+        <input type="number" id="riskPercentage" placeholder="Exemple : 2" required>
+
+        <label for="pipValue">Valeur par pip (en devise) :</label>
+        <input type="number" id="pipValue" placeholder="Exemple : 0.10 pour USD/JPY" required>
+
+        <button onclick="calculerLotEtProfit()">Calculer la Taille de Lot et Profit Potentiel</button>
+
+        <div id="result"></div>
+
+        <footer>
+            <p>Pour en savoir plus sur cette stratégie, visitez votre broker : <a href="https://one.exnesstrack.org/a/sfpfysgpc9" target="_blank">lien du broker</a></p>
+            <p>Contact WhatsApp : <a href="https://wa.me/22657202363" target="_blank">+226 57 20 23 63</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function calculerLotEtProfit() {
+            const capital = parseFloat(document.getElementById('capital').value);
+            const riskPercentage = parseFloat(document.getElementById('riskPercentage').value);
+            const pipValue = parseFloat(document.getElementById('pipValue').value);
+            const pipTarget = 100; // Cible de pips définie pour la stratégie
+
+            if (isNaN(capital) || isNaN(riskPercentage) || isNaN(pipValue)) {
+                document.getElementById('result').innerText = "Veuillez entrer toutes les valeurs correctement.";
+                return;
+            }
+
+            // Calcul du risque en USD et de la taille de lot recommandée
+            const riskAmount = (capital * riskPercentage) / 100;
+            const lotSize = riskAmount / (pipTarget * pipValue);
+
+            // Calcul du profit potentiel basé sur la taille de lot et l'objectif de pips
+            const potentialProfit = lotSize * pipTarget * pipValue;
+
+            // Affichage des résultats
+            document.getElementById('result').innerHTML = `
+                <p>Taille de lot recommandée : <strong>${lotSize.toFixed(2)}</strong> lots</p>
+                <p>Profit potentiel : <strong>${potentialProfit.toFixed(2)} USD</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>
